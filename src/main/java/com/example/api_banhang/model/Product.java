@@ -1,8 +1,11 @@
 package com.example.api_banhang.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
@@ -11,6 +14,8 @@ import java.util.Set;
 @Setter
 @Getter
 @Table(name = "product")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,11 +30,11 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "lsp_id",foreignKey = @ForeignKey(name = "fk_sanpham_loaisanpham"))
-    @JsonIgnore
+    @JsonIgnoreProperties
     private LoaiSanPham loaiSanPham;
 
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)
-    @JsonIgnore
+    @JsonIgnoreProperties
     private Set<OrderDetails> orderDetails;
 
     @OneToMany(mappedBy = "product",fetch = FetchType.LAZY)

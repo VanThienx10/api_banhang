@@ -8,9 +8,10 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-public class ApiBanhangApplication  {
+public class ApiBanhangApplication {
 //    final private User user = User.builder().username("van tu").email("tukoik@gmail.com").password("123456").build();
 
     public static void main(String[] args) {
@@ -18,6 +19,7 @@ public class ApiBanhangApplication  {
 //        e.sendContentToVer2("anhdqph19418@fpt.edu.vn","hello","xin chao");
         SpringApplication.run(ApiBanhangApplication.class, args);
     }
+
 
 
 }

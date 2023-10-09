@@ -2,6 +2,9 @@ package com.example.api_banhang.config;
 
 import com.example.api_banhang.model.Role;
 
+import com.example.api_banhang.model.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -13,13 +16,16 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Data
+@AllArgsConstructor
 public class NguoiDungUserDetails implements UserDetails {
-    private String email;
+    User user;
+    private String username;
     private String password;
     private List<GrantedAuthority> authorities;
 
     public NguoiDungUserDetails(NguoiDungData nguoiDung) {
-        email = nguoiDung.getNguoiDung().getEmail();
+        username = nguoiDung.getNguoiDung().getUsername();
         password = nguoiDung.getNguoiDung().getPassword();
         String[] roleList = new String[nguoiDung.getQuyenList().size()];
         int i = 0;
@@ -31,6 +37,8 @@ public class NguoiDungUserDetails implements UserDetails {
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -44,7 +52,7 @@ public class NguoiDungUserDetails implements UserDetails {
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     @Override

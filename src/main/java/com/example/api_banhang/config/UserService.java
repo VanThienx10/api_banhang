@@ -6,6 +6,7 @@ import com.example.api_banhang.model.User;
 import com.example.api_banhang.repostory.RoleRepostory;
 import com.example.api_banhang.repostory.UserRepostory;
 import com.example.api_banhang.repostory.UserRoleRepostory;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,4 +34,7 @@ public class UserService implements UserDetailsService {
         return optCheck.map(NguoiDungUserDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("Không tồn tại người dùng có email là: " + email));
     }
+
+
+    
 }

@@ -2,7 +2,9 @@ package com.example.api_banhang.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
@@ -11,6 +13,8 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "loáianpham")
+@AllArgsConstructor
+@NoArgsConstructor
 public class LoaiSanPham {
     @Id
     @GeneratedValue(strategy =GenerationType.IDENTITY)

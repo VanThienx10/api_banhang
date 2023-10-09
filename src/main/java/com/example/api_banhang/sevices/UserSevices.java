@@ -25,10 +25,10 @@ public class UserSevices {
     public String addUser(User user){
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         userRepostory.save(user);
-        Role r = roleRepostory.findById(2).get();
+//        Role r = roleRepostory.findById(2).get();
         UserRole ur = new UserRole();
-        ur.setUser(user);
-        ur.setRole(r);
+        ur.setUserId(user.getId());
+        ur.setRoleId(2);
         userRepostory.save(user);
         userRoleRepostory.save(ur);
         return "Them thanh cong! ";
@@ -49,10 +49,10 @@ public class UserSevices {
             }
 
             userRepostory.save(userCurrent);
-            return "Sua thnah cong!";
+            return "Sua thanh cong!";
         }
     }
-    public String SuaPhanQuyen(UserRole userRole){
+    public String PhanQuyen(UserRole userRole){
         Optional<UserRole> ur=  userRoleRepostory.findById(userRole.getId());
         if (ur.isEmpty()){
             return "Khong ton tai quyen";
@@ -64,6 +64,22 @@ public class UserSevices {
 
         }
     }
+    public String ThemPhanQuyen(UserRole userRole){
+        userRoleRepostory.save(userRole);
+        return "Them thanh cong";
+    }
+
+
+    public String XoaUser(int user_id){
+        Optional<User> u = userRepostory.findById(user_id);
+        if (u.isEmpty()){
+            return "Khong ton tai id xoa";
+        }
+        userRepostory.deleteById(user_id);
+        return "Xoa thanh cong !";
+    }
+
+
 
     public List<User> getAllUser(){
         return  userRepostory.findAll();

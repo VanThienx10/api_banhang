@@ -1,7 +1,12 @@
 package com.example.api_banhang.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
@@ -10,6 +15,8 @@ import java.util.Set;
 @Table
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +25,7 @@ public class Payment {
     private int status;
 
     @OneToMany(mappedBy = "payment",fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<Order> orders;
 
 }

@@ -1,14 +1,20 @@
 package com.example.api_banhang.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Table
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,7 +24,7 @@ public class OrderDetails {
 
     @ManyToOne
     @JoinColumn(name = "product_id",foreignKey = @ForeignKey(name = "fk_sanpham_order_details"))
-    @JsonIgnore
+    @JsonIgnoreProperties
     private Product product;
 
     @ManyToOne
